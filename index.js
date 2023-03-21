@@ -31,7 +31,6 @@ function isCollide(snakeArr) {
 
     for (let i = 1; i < snakeArr.length; i++) {
         if (snakeArr[i].x === snakeArr[0].x && snakeArr[i].y === snakeArr[0].y) {
-
             return true
         }
     }
@@ -61,12 +60,12 @@ function game() {
         eatSound.play()
         score += 1
         scoreElement.innerHTML = "Score: " + score
-        scoreElement.innerHTML = "Score: " + score;
         snakeArr.unshift({ x: snakeArr[0].x + inputDir.x, y: snakeArr[0].y + inputDir.y });
         let a = 2;
         let b = 16;
         food = { x: Math.round(a + (b - a) * Math.random()), y: Math.round(a + (b - a) * Math.random()) }
     }
+     
     //for food 2
     if (snakeArr[0].y === food2.y && snakeArr[0].x === food2.x) {
         // lofic for adding increasing the body
@@ -83,8 +82,7 @@ function game() {
         // lofic for adding increasing the body
         eatSound.play()
         score += 5
-        scoreElement.innerHTML = "Score: " + score
-        scoreElement.innerHTML = "Score: " + score;
+        scoreElement.innerHTML = "Score: " + score +" "+"speed : " + speed
         snakeArr.unshift({ x: snakeArr[0].x + inputDir.x, y: snakeArr[0].y + inputDir.y });
         let a = 1;
         let b = 20;
@@ -123,6 +121,66 @@ function game() {
 
 }
 
+document.getElementById("startGame").addEventListener("click" , ()=>{
+    window.addEventListener("keydown", e => {
+        bgm.play()
+        inputDir = { // game starts
+            x: 0,
+            y: 1
+        }
+    
+        switch (e.key) {
+            //arrow keys
+            case "ArrowUp":
+                console.log("up")
+                inputDir.x = 0
+                inputDir.y = -1
+                break
+    
+            case "ArrowDown":
+                console.log("down")
+                inputDir.x = 0
+                inputDir.y = 1
+    
+                break
+            case "ArrowLeft":
+                console.log("left")
+                inputDir.x = -1
+                inputDir.y = 0
+                break
+            case "ArrowRight":
+                console.log("right")
+                inputDir.x = 1
+                inputDir.y = 0
+                break
+    
+            // wasd keys
+            case "w":
+                console.log("up")
+                inputDir.x = 0
+                inputDir.y = -1
+                break
+    
+            case "s":
+                console.log("down")
+                inputDir.x = 0
+                inputDir.y = 1
+                break
+            case "a":
+                console.log("left")
+                inputDir.x = -1
+                inputDir.y = 0
+                break
+            case "d":
+                console.log("right")
+                inputDir.x = 1
+                inputDir.y = 0
+                break
+            default:
+                break
+        }
+    })
+})
 
 function displayFood(foodElement, food, foodClass) {
     foodElement = document.createElement('div')
@@ -144,65 +202,64 @@ function displayGameOver(){
    
 }
 
-
 window.requestAnimationFrame(main)
 
 // whenever any key is pressed on keyboard , arrow function will execute
-window.addEventListener("keydown", e => {
-    bgm.play()
-    inputDir = { // game starts
-        x: 0,
-        y: 1
-    }
+//  window.addEventListener("keydown", e => {
+//     bgm.play()
+//     inputDir = { // game starts
+//         x: 0,
+//         y: 1
+//     }
 
-    switch (e.key) {
-        //arrow keys
-        case "ArrowUp":
-            console.log("up")
-            inputDir.x = 0
-            inputDir.y = -1
-            break
+//     switch (e.key) {
+//         //arrow keys
+//         case "ArrowUp":
+//             console.log("up")
+//             inputDir.x = 0
+//             inputDir.y = -1
+//             break
 
-        case "ArrowDown":
-            console.log("down")
-            inputDir.x = 0
-            inputDir.y = 1
+//         case "ArrowDown":
+//             console.log("down")
+//             inputDir.x = 0
+//             inputDir.y = 1
 
-            break
-        case "ArrowLeft":
-            console.log("left")
-            inputDir.x = -1
-            inputDir.y = 0
-            break
-        case "ArrowRight":
-            console.log("right")
-            inputDir.x = 1
-            inputDir.y = 0
-            break
+//             break
+//         case "ArrowLeft":
+//             console.log("left")
+//             inputDir.x = -1
+//             inputDir.y = 0
+//             break
+//         case "ArrowRight":
+//             console.log("right")
+//             inputDir.x = 1
+//             inputDir.y = 0
+//             break
 
-        // wasd keys
-        case "w":
-            console.log("up")
-            inputDir.x = 0
-            inputDir.y = -1
-            break
+//         // wasd keys
+//         case "w":
+//             console.log("up")
+//             inputDir.x = 0
+//             inputDir.y = -1
+//             break
 
-        case "s":
-            console.log("down")
-            inputDir.x = 0
-            inputDir.y = 1
-            break
-        case "a":
-            console.log("left")
-            inputDir.x = -1
-            inputDir.y = 0
-            break
-        case "d":
-            console.log("right")
-            inputDir.x = 1
-            inputDir.y = 0
-            break
-        default:
-            break
-    }
-})
+//         case "s":
+//             console.log("down")
+//             inputDir.x = 0
+//             inputDir.y = 1
+//             break
+//         case "a":
+//             console.log("left")
+//             inputDir.x = -1
+//             inputDir.y = 0
+//             break
+//         case "d":
+//             console.log("right")
+//             inputDir.x = 1
+//             inputDir.y = 0
+//             break
+//         default:
+//             break
+//     }
+// })

@@ -1,10 +1,13 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&family=Rubik+Iso&display=swap');
 *{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 body{
-    background-color: #252525;
+    /* background-color: #252525; */
+    background-image: url(forest.png);
+    background-size: contain;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -13,7 +16,7 @@ body{
 
 }
 #board {
-    border: 1px solid black;
+    border: 5px solid rgb(168, 66, 2);
     /* background-color: rgb(231, 160, 106);/ */
     background-image: url(grassTile.avif);
     /* background-size: cover; */
@@ -25,6 +28,16 @@ body{
     width: 500px;
     /* gap: 1px */
   
+  }
+  #board::before{
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.3); /* semi-transparent black */
   }
   #scoreElement{
     position: absolute;
@@ -48,7 +61,7 @@ body{
   }
   .snake-food{
     /* background-color: red; */
-    background-image: url(apple.png);
+    background-image: url(apple.webp);
     background-size: cover;
     /* animation: blink 1s step-start 0s infinite; */
     
@@ -73,11 +86,17 @@ body{
     }
   } */
 
-  @media  screen and (max-width:340px){
+  @media only screen and (max-width:375px){
     #board{
       height: 60vh;
       width:100vw;
       background-image: url(grassTile.avif);
+      background-size: cover;
+    }
+    .loading-page{
+      height: 100vh;
+      width: 100vw;
+      background-repeat: no-repeat;
       background-size: cover;
     }
   }
@@ -91,3 +110,42 @@ body{
     width: 300px;
     
   }
+   
+ .loading-page{
+  /* display: none; */
+  position: absolute;
+  z-index: 1;
+  height: 100vh;
+  width: 100vw;
+  background: url(forest.png);
+  background-size: contain;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+ }
+ .start-game-page{
+  height:70vh;
+  width: 50vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(132, 61, 0, 0.438);
+
+ }
+ .start-game-page button{
+   background: none;
+   border: none;
+  background-image: url(woodPlank.png);
+  background-size: cover;
+  margin: 20px 0px;
+  width: 200px;
+  height: 60px;
+  border-radius: 20px ;
+  font-family: 'Rubik Iso', cursive;
+  font-size: 25px;
+  color: rgb(153, 255, 0);
+ }
+ .start-game-page button:hover{
+  transform: scale(1.2);
+ }
