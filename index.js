@@ -5,8 +5,8 @@ let lastPaintTime = 0
 let snakeArr = [{ x: 13, y: 15 }]
 let score = 0;
 food = { x: 6, y: 7 }
-food2 = {x:2, y:9}
-food3 = {x:5 ,y:5}
+food2 = { x: 2, y: 9 }
+food3 = { x: 5, y: 5 }
 // playground to play snake game
 let board = document.getElementById("board")
 // let score = document.getElementById("score")
@@ -28,7 +28,7 @@ function main(ctime) {
 }
 function isCollide(snakeArr) {
     // is snake collide with itself
-    
+
     for (let i = 1; i < snakeArr.length; i++) {
         if (snakeArr[i].x === snakeArr[0].x && snakeArr[i].y === snakeArr[0].y) {
 
@@ -50,9 +50,10 @@ function game() {
         inputDir = {
             x: 0, y: 0
         }
-        alert("Game over , press any key to continue!")
+        // alert("Game over , press any key to continue!")
         snakeArr = [{ x: 13, y: 15 }]
         score = 0
+        displayGameOver()
     }
     // if food is consumed increment the score and regenerate the food
     if (snakeArr[0].y === food.y && snakeArr[0].x === food.x) {
@@ -110,31 +111,37 @@ function game() {
         board.appendChild(snakeElement)
     })
     //display snake and food
-    
-    foodElement = document.createElement('div')
-    foodElement.style.gridRowStart = food.y
-    foodElement.style.gridColumnStart = food.x
-    foodElement.classList.add('snake-food')
-    board.appendChild(foodElement)
-    // food orange
-    food2Element = document.createElement('div')
-    food2Element.style.gridRowStart = food2.y
-    food2Element.style.gridColumnStart = food2.x
-    food2Element.classList.add('snake-food2')
-    board.appendChild(food2Element)
 
-   displayFood("food3Element" , food3 , "snake-food3" )
+
+    //apple
+    displayFood("foodElement", food, "snake-food")
+    //orange
+    displayFood("food2Element", food2, "snake-food2")
+    //banana
+    displayFood("food3Element", food3, "snake-food3")
 
 
 }
 
 
-function displayFood(foodElement , food , foodClass){
+function displayFood(foodElement, food, foodClass) {
     foodElement = document.createElement('div')
     foodElement.style.gridRowStart = food.y
     foodElement.style.gridColumnStart = food.x
     foodElement.classList.add(foodClass)
     board.appendChild(foodElement)
+}
+
+function displayGameOver(){
+    gameOver = document.querySelector(".gameOver")
+    gameOver.style.removeProperty("display")
+    gameOver.style.setProperty("display", "block")
+
+    document.addEventListener("keydown", function removeGameOver() {
+        gameOver.style.setProperty("display", "none");
+        document.removeEventListener("keydown", removeGameOver);
+    });
+   
 }
 
 
@@ -155,11 +162,11 @@ window.addEventListener("keydown", e => {
             inputDir.x = 0
             inputDir.y = -1
             break
-            
-            case "ArrowDown":
-                console.log("down")
-                inputDir.x = 0
-                inputDir.y = 1
+
+        case "ArrowDown":
+            console.log("down")
+            inputDir.x = 0
+            inputDir.y = 1
 
             break
         case "ArrowLeft":
