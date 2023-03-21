@@ -23,13 +23,42 @@ body{
     /* gap: 1px */
   
   }
-
+  #scoreElement{
+    position: absolute;
+    top:20px;
+    right: 20px;
+    font-size: 20px;
+    color: white;
+    z-index: 11;
+  }
   .snake-head{
     background-color: greenyellow;
+    background-image: url(head.png);
+    background-size: cover;
+    /* transform: scale(1.5); */
+    /* transform: rotate(90deg); */
   }
-  .snake-body{
+  .snake{
     background-color: blueviolet;
   }
-  .food{
-    background-color: red;
+  .snake-food{
+    /* background-color: red; */
+    background-image: url(apple.png);
+    background-size: cover;
+    /* animation: blink 1s step-start 0s infinite; */
+    
   }
+  .snake-food2{
+    /* background-color: red; */
+    background-image: url(orange.png);
+    background-size: cover;
+  }
+ 
+  /* @keyframes blink {
+    50% {
+      opacity: 0.0;
+    }
+    100%{
+      opacity: 1;
+    }
+  } */
