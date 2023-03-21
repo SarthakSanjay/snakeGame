@@ -122,6 +122,7 @@ function game() {
 }
 
 document.getElementById("startGame").addEventListener("click" , ()=>{
+    document.querySelector(".loading-page").style.setProperty("display", "none");
     window.addEventListener("keydown", e => {
         bgm.play()
         inputDir = { // game starts
@@ -181,7 +182,7 @@ document.getElementById("startGame").addEventListener("click" , ()=>{
         }
     })
 })
-
+// document.getElementById("exit").addEventListener("click",()=> {window.close()})
 function displayFood(foodElement, food, foodClass) {
     foodElement = document.createElement('div')
     foodElement.style.gridRowStart = food.y
