@@ -6,6 +6,7 @@ let snakeArr = [{ x: 13, y: 15 }]
 let score = 0;
 food = { x: 6, y: 7 }
 food2 = {x:2, y:9}
+food3 = {x:5 ,y:5}
 // playground to play snake game
 let board = document.getElementById("board")
 // let score = document.getElementById("score")
@@ -77,6 +78,17 @@ function game() {
         let b = 20;
         food2 = { x: Math.round(a + (b - a) * Math.random()), y: Math.round(a + (b - a) * Math.random()) }
     }
+    if (snakeArr[0].y === food3.y && snakeArr[0].x === food3.x) {
+        // lofic for adding increasing the body
+        eatSound.play()
+        score += 5
+        scoreElement.innerHTML = "Score: " + score
+        scoreElement.innerHTML = "Score: " + score;
+        snakeArr.unshift({ x: snakeArr[0].x + inputDir.x, y: snakeArr[0].y + inputDir.y });
+        let a = 1;
+        let b = 20;
+        food3 = { x: Math.round(a + (b - a) * Math.random()), y: Math.round(a + (b - a) * Math.random()) }
+    }
     // moving the snake
     for (let i = snakeArr.length - 2; i >= 0; i--) {
         snakeArr[i + 1] = { ...snakeArr[i] }
@@ -111,11 +123,19 @@ function game() {
     food2Element.classList.add('snake-food2')
     board.appendChild(food2Element)
 
+   displayFood("food3Element" , food3 , "snake-food3" )
+
 
 }
 
 
-
+function displayFood(foodElement , food , foodClass){
+    foodElement = document.createElement('div')
+    foodElement.style.gridRowStart = food.y
+    foodElement.style.gridColumnStart = food.x
+    foodElement.classList.add(foodClass)
+    board.appendChild(foodElement)
+}
 
 
 window.requestAnimationFrame(main)

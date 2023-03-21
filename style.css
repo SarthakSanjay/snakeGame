@@ -14,7 +14,9 @@ body{
 }
 #board {
     border: 1px solid black;
-    background-color: rgb(231, 160, 106);
+    /* background-color: rgb(231, 160, 106);/ */
+    background-image: url(grassTile.avif);
+    background-size: cover;
     display: grid;
     grid-template-columns: repeat(20,1fr);
     grid-template-rows: repeat(20,1fr);
@@ -53,6 +55,11 @@ body{
     background-image: url(orange.png);
     background-size: cover;
   }
+  .snake-food3{
+    /* background-color: red; */
+    background-image: url(banana.png);
+    background-size: cover;
+  }
  
   /* @keyframes blink {
     50% {
@@ -62,3 +69,12 @@ body{
       opacity: 1;
     }
   } */
+
+  @media  screen and (max-width:340px){
+    #board{
+      height: 60vh;
+      width:100vw;
+      background-image: url(grassTile.avif);
+      background-size: cover;
+    }
+  }
