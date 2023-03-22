@@ -58,7 +58,19 @@ function game() {
     }
     // if food is consumed increment the score and regenerate the food
     if (snakeArr[0].y === food.y && snakeArr[0].x === food.x) {
-        // lofic for adding increasing the body
+        // logic for adding increasing the body
+        let pts = document.querySelector(".pointsElement")
+        pts.style.setProperty("display", "block")
+        setTimeout(()=>{
+            // pts.style.setProperty("transform", "scale(0.8)")
+            pts.style.setProperty("animation", "zoom 1s ease-in-out")
+        },500)
+        pts.innerHTML = "+2" 
+        setTimeout(()=>{
+            pts.style.removeProperty("display" ,"block")
+            // pts.style.removeProperty("transform", "scale(0.8)")
+            pts.style.removeProperty("animation", "zoom 1s ease-in-out")
+        },1000)
         eatSound.play()
         score += 1
         scoreElement.innerHTML = "Score: " + score
@@ -76,6 +88,16 @@ function game() {
     //for food 2
     if (snakeArr[0].y === food2.y && snakeArr[0].x === food2.x) {
         // lofic for adding increasing the body
+        let pts = document.querySelector(".pointsElement")
+        pts.style.setProperty("display", "block")
+        setTimeout(()=>{
+            pts.style.setProperty("transform", "scale(0.8)")
+        },500)
+        pts.innerHTML = "+3" 
+        setTimeout(()=>{
+            pts.style.removeProperty("display" ,"block")
+            pts.style.removeProperty("transform", "scale(0.8)")
+        },1000)
         eatSound.play()
         score += 2
         scoreElement.innerHTML = "Score: " + score
@@ -86,6 +108,16 @@ function game() {
     }
     if (snakeArr[0].y === food3.y && snakeArr[0].x === food3.x) {
         // lofic for adding increasing the body
+        let pts = document.querySelector(".pointsElement")
+        pts.style.setProperty("display", "block")
+        setTimeout(()=>{
+            pts.style.setProperty("transform", "scale(0.8)")
+        },500)
+        pts.innerHTML = "+5" 
+        setTimeout(()=>{
+            pts.style.removeProperty("display" ,"block")
+            pts.style.removeProperty("transform", "scale(0.8)")
+        },1000)
         eatSound.play()
         score += 5
         scoreElement.innerHTML = "Score: " + score
