@@ -11,9 +11,10 @@ food3 = { x: 5, y: 5 }
 let board = document.getElementById("board")
 // let score = document.getElementById("score")
 
-const eatSound = new Audio("eat.mp3")
-const gameOverSound = new Audio("gameOver.mp3")
-const bgm = new Audio("gameBAckground.mp3")
+let eatSound = new Audio("/audio/eat.mp3")
+let gameOverSound = new Audio("/audio/gameOver.mp3")
+let bgm = new Audio("/audio/gameBAckground.mp3")
+let buttonClickSound = new Audio("/audio/buttonClick.mp3")
 
 
 function main(ctime) {
@@ -46,6 +47,7 @@ function game() {
     if (isCollide(snakeArr)) {
         gameOverSound.play()
         bgm.pause()
+        
         inputDir = {
             x: 0, y: 0
         }
@@ -60,37 +62,23 @@ function game() {
         eatSound.play()
         score += 1
         scoreElement.innerHTML = "Score: " + score
+        // scoreElement.style.fontFamily = "Rubik Iso"
         snakeArr.unshift({ x: snakeArr[0].x + inputDir.x, y: snakeArr[0].y + inputDir.y });
         let a = 2;
         let b = 16;
         food = { x: Math.round(a + (b - a) * Math.random()), y: Math.round(a + (b - a) * Math.random()) }
 
         // create pop-up element
-let pointPopUp = document.createElement("span");
-pointPopUp.style.position = "absolute";
-pointPopUp.style.gridRowStart = food.y
-pointPopUp.style.gridColumnStart = food.x
-pointPopUp.style.zIndex = "30";
-pointPopUp.style.color = "white";
-pointPopUp.innerHTML = "+" + score;
 
-// add pop-up to board
-board.appendChild(pointPopUp);
-
-// remove pop-up after 1 second
-setTimeout(function() {
-  board.removeChild(pointPopUp);
-},500);
 
     }
-     
+
     //for food 2
     if (snakeArr[0].y === food2.y && snakeArr[0].x === food2.x) {
         // lofic for adding increasing the body
         eatSound.play()
         score += 2
         scoreElement.innerHTML = "Score: " + score
-        scoreElement.innerHTML = "Score: " + score;
         snakeArr.unshift({ x: snakeArr[0].x + inputDir.x, y: snakeArr[0].y + inputDir.y });
         let a = 1;
         let b = 20;
@@ -100,7 +88,7 @@ setTimeout(function() {
         // lofic for adding increasing the body
         eatSound.play()
         score += 5
-        scoreElement.innerHTML = "Score: " + score +" "+"speed : " + speed
+        scoreElement.innerHTML = "Score: " + score
         snakeArr.unshift({ x: snakeArr[0].x + inputDir.x, y: snakeArr[0].y + inputDir.y });
         let a = 1;
         let b = 20;
@@ -139,7 +127,8 @@ setTimeout(function() {
 
 }
 
-document.getElementById("startGame").addEventListener("click" , ()=>{
+document.getElementById("startGame").addEventListener("click", () => {
+    buttonClickSound.play()
     document.querySelector(".loading-page").style.setProperty("display", "none");
     window.addEventListener("keydown", e => {
         bgm.play()
@@ -147,7 +136,7 @@ document.getElementById("startGame").addEventListener("click" , ()=>{
             x: 0,
             y: 1
         }
-    
+
         switch (e.key) {
             //arrow keys
             case "ArrowUp":
@@ -155,12 +144,12 @@ document.getElementById("startGame").addEventListener("click" , ()=>{
                 inputDir.x = 0
                 inputDir.y = -1
                 break
-    
+
             case "ArrowDown":
                 console.log("down")
                 inputDir.x = 0
                 inputDir.y = 1
-    
+
                 break
             case "ArrowLeft":
                 console.log("left")
@@ -172,14 +161,14 @@ document.getElementById("startGame").addEventListener("click" , ()=>{
                 inputDir.x = 1
                 inputDir.y = 0
                 break
-    
+
             // wasd keys
             case "w":
                 console.log("up")
                 inputDir.x = 0
                 inputDir.y = -1
                 break
-    
+
             case "s":
                 console.log("down")
                 inputDir.x = 0
@@ -200,6 +189,93 @@ document.getElementById("startGame").addEventListener("click" , ()=>{
         }
     })
 })
+
+// Get all the buttons
+const buttons = document.querySelectorAll('.btn');
+
+// Set the initial active button
+let activeButton = 0;
+buttons[activeButton].classList.add('active');
+
+// Add event listener to the document to detect key presses
+document.addEventListener('keydown', e => {
+  if (e.key === 'ArrowUp') {
+    // Move to the previous button
+    buttons[activeButton].classList.remove('active');
+    activeButton = (activeButton === 0) ? buttons.length - 1 : activeButton - 1;
+    buttons[activeButton].classList.add('active');
+} else if (e.key === 'ArrowDown') {
+    // Move to the next button
+    buttons[activeButton].classList.remove('active');
+    activeButton = (activeButton === buttons.length - 1) ? 0 : activeButton + 1;
+    buttons[activeButton].classList.add('active');
+}
+// console.log(buttons[0].id)
+if(e.key === "Enter" && buttons[activeButton].id === "startGame"){
+    document.querySelector(".loading-page").style.setProperty("display", "none");
+    window.addEventListener("keydown", e => {
+        bgm.play()
+        inputDir = { // game starts
+            x: 0,
+            y: 1
+        }
+
+        switch (e.key) {
+            //arrow keys
+            case "ArrowUp":
+                console.log("up")
+                inputDir.x = 0
+                inputDir.y = -1
+                break
+
+            case "ArrowDown":
+                console.log("down")
+                inputDir.x = 0
+                inputDir.y = 1
+
+                break
+            case "ArrowLeft":
+                console.log("left")
+                inputDir.x = -1
+                inputDir.y = 0
+                break
+            case "ArrowRight":
+                console.log("right")
+                inputDir.x = 1
+                inputDir.y = 0
+                break
+
+            // wasd keys
+            case "w":
+                console.log("up")
+                inputDir.x = 0
+                inputDir.y = -1
+                break
+
+            case "s":
+                console.log("down")
+                inputDir.x = 0
+                inputDir.y = 1
+                break
+            case "a":
+                console.log("left")
+                inputDir.x = -1
+                inputDir.y = 0
+                break
+            case "d":
+                console.log("right")
+                inputDir.x = 1
+                inputDir.y = 0
+                break
+            default:
+                break
+        }
+    })
+}
+})
+
+
+
 // document.getElementById("exit").addEventListener("click",()=> {window.close()})
 function displayFood(foodElement, food, foodClass) {
     foodElement = document.createElement('div')
@@ -209,7 +285,7 @@ function displayFood(foodElement, food, foodClass) {
     board.appendChild(foodElement)
 }
 
-function displayGameOver(){
+function displayGameOver() {
     gameOver = document.querySelector(".gameOver")
     gameOver.style.removeProperty("display")
     gameOver.style.setProperty("display", "block")
@@ -218,7 +294,7 @@ function displayGameOver(){
         gameOver.style.setProperty("display", "none");
         document.removeEventListener("keydown", removeGameOver);
     });
-   
+
 }
 
 window.requestAnimationFrame(main)
@@ -282,3 +358,6 @@ window.requestAnimationFrame(main)
 //             break
 //     }
 // })
+
+
+
