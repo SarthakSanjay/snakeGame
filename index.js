@@ -64,6 +64,24 @@ function game() {
         let a = 2;
         let b = 16;
         food = { x: Math.round(a + (b - a) * Math.random()), y: Math.round(a + (b - a) * Math.random()) }
+
+        // create pop-up element
+let pointPopUp = document.createElement("span");
+pointPopUp.style.position = "absolute";
+pointPopUp.style.gridRowStart = food.y
+pointPopUp.style.gridColumnStart = food.x
+pointPopUp.style.zIndex = "30";
+pointPopUp.style.color = "white";
+pointPopUp.innerHTML = "+" + score;
+
+// add pop-up to board
+board.appendChild(pointPopUp);
+
+// remove pop-up after 1 second
+setTimeout(function() {
+  board.removeChild(pointPopUp);
+},500);
+
     }
      
     //for food 2
