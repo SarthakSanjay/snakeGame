@@ -1,5 +1,6 @@
 // game variables
 let inputDir = { x: 0, y: 0 }
+let loadingpage = true
 let speed = 7;
 let lastPaintTime = 0
 let snakeArr = [{ x: 13, y: 15 }]
@@ -11,7 +12,13 @@ food3 = { x: 5, y: 5 }
 let board = document.getElementById("board")
 // let score = document.getElementById("score")
 
-let eatSound = new Audio("/audio/eat.mp3")
+const delay = 100;
+
+// initialize the last keydown time
+let lastKeyDownTime = 0;
+
+const eatSound = new Audio("/audio/eat.mp3")
+eatSound.volume = 1
 let gameOverSound = new Audio("/audio/gameOver.mp3")
 let bgm = new Audio("/audio/gameBAckground.mp3")
 let buttonClickSound = new Audio("/audio/buttonClick.mp3")
@@ -57,13 +64,16 @@ function game() {
         displayGameOver()
     }
     // if food is consumed increment the score and regenerate the food
+    //food1
     if (snakeArr[0].y === food.y && snakeArr[0].x === food.x) {
         // logic for adding increasing the body
         let pts = document.querySelector(".pointsElement")
         pts.style.setProperty("display", "block")
         setTimeout(()=>{
             // pts.style.setProperty("transform", "scale(0.8)")
+           
             pts.style.setProperty("animation", "zoom 1s ease-in-out")
+
         },500)
         pts.innerHTML = "+2" 
         setTimeout(()=>{
@@ -72,6 +82,7 @@ function game() {
             pts.style.removeProperty("animation", "zoom 1s ease-in-out")
         },1000)
         eatSound.play()
+        
         score += 1
         scoreElement.innerHTML = "Score: " + score
         // scoreElement.style.fontFamily = "Rubik Iso"
@@ -163,6 +174,7 @@ document.getElementById("startGame").addEventListener("click", () => {
     buttonClickSound.play()
     document.querySelector(".loading-page").style.setProperty("display", "none");
     window.addEventListener("keydown", e => {
+        bgm.currentTime = 0
         bgm.play()
         inputDir = { // game starts
             x: 0,
@@ -231,13 +243,28 @@ buttons[activeButton].classList.add('active');
 
 // Add event listener to the document to detect key presses
 document.addEventListener('keydown', e => {
+    const currentTime = Date.now();
+
+  // calculate the time since the last keydown event
+  const timeSinceLastKeyDown = currentTime - lastKeyDownTime;
+   
   if (e.key === 'ArrowUp') {
     // Move to the previous button
+    if(loadingpage && timeSinceLastKeyDown >= delay){
+        buttonClickSound.currentTime = 0
+        buttonClickSound.play()
+        lastKeyDownTime = currentTime;
+    }
     buttons[activeButton].classList.remove('active');
     activeButton = (activeButton === 0) ? buttons.length - 1 : activeButton - 1;
     buttons[activeButton].classList.add('active');
 } else if (e.key === 'ArrowDown') {
     // Move to the next button
+    if(loadingpage && timeSinceLastKeyDown >= delay){
+        buttonClickSound.currentTime = 0
+        buttonClickSound.play()
+        lastKeyDownTime = currentTime;
+    }
     buttons[activeButton].classList.remove('active');
     activeButton = (activeButton === buttons.length - 1) ? 0 : activeButton + 1;
     buttons[activeButton].classList.add('active');
@@ -245,8 +272,11 @@ document.addEventListener('keydown', e => {
 // console.log(buttons[0].id)
 if(e.key === "Enter" && buttons[activeButton].id === "startGame"){
     document.querySelector(".loading-page").style.setProperty("display", "none");
+    buttonClickSound.play()
     window.addEventListener("keydown", e => {
         bgm.play()
+        bgm.volume = .2
+        loadingpage = false
         inputDir = { // game starts
             x: 0,
             y: 1
