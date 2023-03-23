@@ -1,9 +1,9 @@
 // game variables
 let inputDir = { x: 0, y: 0 }
 let loadingpage = true
-let speed = 7;
+let speed = 12;
 let lastPaintTime = 0
-let snakeArr = [{ x: 13, y: 15 }]
+let snakeArr = [{ x: 10, y: 10 }]
 let score = 0;
 food = { x: 6, y: 7 }
 food2 = { x: 2, y: 9 }
@@ -54,11 +54,7 @@ function game() {
     if (isCollide(snakeArr)) {
         gameOverSound.play()
         bgm.pause()
-        
-        inputDir = {
-            x: 0, y: 0
-        }
-        // alert("Game over , press any key to continue!")
+        inputDir = {x: 0, y: 0}
         snakeArr = [{ x: 13, y: 15 }]
         score = 0
         displayGameOver()
@@ -70,11 +66,8 @@ function game() {
         let pts = document.querySelector(".pointsElement")
         pts.style.setProperty("display", "block")
         setTimeout(()=>{
-            // pts.style.setProperty("transform", "scale(0.8)")
-           
             pts.style.setProperty("animation", "zoom 1s ease-in-out")
-
-        },500)
+},500)
         pts.innerHTML = "+2" 
         setTimeout(()=>{
             pts.style.removeProperty("display" ,"block")
@@ -82,18 +75,12 @@ function game() {
             pts.style.removeProperty("animation", "zoom 1s ease-in-out")
         },1000)
         eatSound.play()
-        
         score += 1
         scoreElement.innerHTML = "Score: " + score
-        // scoreElement.style.fontFamily = "Rubik Iso"
         snakeArr.unshift({ x: snakeArr[0].x + inputDir.x, y: snakeArr[0].y + inputDir.y });
         let a = 2;
         let b = 16;
         food = { x: Math.round(a + (b - a) * Math.random()), y: Math.round(a + (b - a) * Math.random()) }
-
-        // create pop-up element
-
-
     }
 
     //for food 2
@@ -101,6 +88,7 @@ function game() {
         // lofic for adding increasing the body
         let pts = document.querySelector(".pointsElement")
         pts.style.setProperty("display", "block")
+        console.log(speed)
         setTimeout(()=>{
             pts.style.setProperty("transform", "scale(0.8)")
         },500)
@@ -137,6 +125,7 @@ function game() {
         let b = 20;
         food3 = { x: Math.round(a + (b - a) * Math.random()), y: Math.round(a + (b - a) * Math.random()) }
     }
+   
     // moving the snake
     for (let i = snakeArr.length - 2; i >= 0; i--) {
         snakeArr[i + 1] = { ...snakeArr[i] }
@@ -461,3 +450,4 @@ rightBtn.addEventListener("click", () => {
 });
 
 }
+
