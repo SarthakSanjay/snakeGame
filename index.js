@@ -172,6 +172,7 @@ function game() {
 
 document.getElementById("startGame").addEventListener("click", () => {
     buttonClickSound.play()
+    controlButton()
     document.querySelector(".loading-page").style.setProperty("display", "none");
     window.addEventListener("keydown", e => {
         bgm.currentTime = 0
@@ -423,3 +424,40 @@ window.requestAnimationFrame(main)
 
 
 
+function controlButton(){
+    // Get the buttons by their IDs
+const upBtn = document.getElementById("up");
+const leftBtn = document.getElementById("left");
+const downBtn = document.getElementById("down");
+const rightBtn = document.getElementById("right");
+
+// Add click event listener to each button
+upBtn.addEventListener("click", () => {
+  // Perform action when the "Up" button is clicked
+  inputDir.x = 0
+  inputDir.y = -1
+  console.log("Up button clicked");
+});
+
+leftBtn.addEventListener("click", () => {
+  // Perform action when the "Left" button is clicked
+  inputDir.x = -1
+  inputDir.y = 0
+  console.log("Left button clicked");
+});
+
+downBtn.addEventListener("click", () => {
+  // Perform action when the "Down" button is clicked
+  inputDir.x = 0
+  inputDir.y = 1
+  console.log("Down button clicked");
+});
+
+rightBtn.addEventListener("click", () => {
+  // Perform action when the "Right" button is clicked
+  inputDir.x = 1
+  inputDir.y = 0
+  console.log("Right button clicked");
+});
+
+}
