@@ -1,7 +1,7 @@
 // game variables
 let inputDir = { x: 0, y: 0 }
 let loadingpage = true
-let speed = 12;
+let speed = 7;
 let lastPaintTime = 0
 let snakeArr = [{ x: 10, y: 10 }]
 let score = 0;
