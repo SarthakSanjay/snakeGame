@@ -451,3 +451,4 @@ rightBtn.addEventListener("click", () => {
 
 }
 
+//need to add play button after game over
