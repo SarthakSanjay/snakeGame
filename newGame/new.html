@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SnakeGame</title>
+    <link type="image/png" sizes="16x16" rel="icon" href="favicon.png">
+    <link rel="stylesheet" href="new.css">
+</head>
+<body>
+    <div class="loading-page">
+    <div class="start-game-page">
+       <button id="startGame" class="btn active">Start Game</button>
+       <button id="exit" class="btn">Exit</button>
+    </div>
+    </div>
+    <video autoplay muted loop class="gameOver" >
+        <source src="../gameover.mp4" type="video/mp4"/>
+       
+    </video>
+    <div id="board">
+    </div>
+    <span class="pointsElement"></span> 
+    <div id="buttons">
+        <span id="up" class="controlBtn"></span>
+        <span id="left" class="controlBtn"></span>
+        <span id="down" class="controlBtn"></span>
+        <span id="right" class="controlBtn"></span>
+    </div>
+    <div id="scoreElement">Score : 0</div>
+    <script type="module" src="new.js"></script>
+</body>
+</html>
