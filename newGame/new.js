@@ -88,45 +88,26 @@ document.getElementById("startGame").addEventListener("click", () => {
         switch (e.key) {
             //arrow keys
             case "ArrowUp":
-                console.log("up")
-                inputDir.x = 0
-                inputDir.y = -1
-                break
-
-            case "ArrowDown":
-                console.log("down")
-                inputDir.x = 0
-                inputDir.y = 1
-
-                break
-            case "ArrowLeft":
-                console.log("left")
-                inputDir.x = -1
-                inputDir.y = 0
-                break
-            case "ArrowRight":
-                console.log("right")
-                inputDir.x = 1
-                inputDir.y = 0
-                break
-
-            // wasd keys
             case "w":
                 console.log("up")
                 inputDir.x = 0
                 inputDir.y = -1
                 break
 
-            case "s":
+            case "ArrowDown":
+                case "s":
                 console.log("down")
                 inputDir.x = 0
                 inputDir.y = 1
+
                 break
-            case "a":
+            case "ArrowLeft":
+            case 'a':
                 console.log("left")
                 inputDir.x = -1
                 inputDir.y = 0
                 break
+            case "ArrowRight":
             case "d":
                 console.log("right")
                 inputDir.x = 1
@@ -138,96 +119,96 @@ document.getElementById("startGame").addEventListener("click", () => {
     })
 })
 
-document.addEventListener('keydown', e => {
-    const currentTime = Date.now();
+// document.addEventListener('keydown', e => {
+//     const currentTime = Date.now();
 
-  // calculate the time since the last keydown event
-  const timeSinceLastKeyDown = currentTime - lastKeyDownTime;
+//   // calculate the time since the last keydown event
+//   const timeSinceLastKeyDown = currentTime - lastKeyDownTime;
    
-  if (e.key === 'ArrowUp') {
-    // Move to the previous button
-    if(loadingpage && timeSinceLastKeyDown >= delay){
-        // buttonClickSound.currentTime = 0
-        // buttonClickSound.play()
-        lastKeyDownTime = currentTime;
-    }
-    // buttons[activeButton].classList.remove('active');
-    // activeButton = (activeButton === 0) ? buttons.length - 1 : activeButton - 1;
-    // buttons[activeButton].classList.add('active');
-} else if (e.key === 'ArrowDown') {
-    // Move to the next button
-    if(loadingpage && timeSinceLastKeyDown >= delay){
-        // buttonClickSound.currentTime = 0
-        // buttonClickSound.play()
-        lastKeyDownTime = currentTime;
-    }
-    // buttons[activeButton].classList.remove('active');
-    // activeButton = (activeButton === buttons.length - 1) ? 0 : activeButton + 1;
-    // buttons[activeButton].classList.add('active');
-}
-// console.log(buttons[0].id)
-if(e.key === "Enter" && buttons[activeButton].id === "startGame"){
-    document.querySelector(".loading-page").style.setProperty("display", "none");
-    // buttonClickSound.play()
-    window.addEventListener("keydown", e => {
-        // bgm.play()
-        // bgm.volume = .2
-        loadingpage = false
-        inputDir = { // game starts
-            x: 0,
-            y: 1
-        }
+//   if (e.key === 'ArrowUp') {
+//     // Move to the previous button
+//     if(loadingpage && timeSinceLastKeyDown >= delay){
+//         // buttonClickSound.currentTime = 0
+//         // buttonClickSound.play()
+//         lastKeyDownTime = currentTime;
+//     }
+//     // buttons[activeButton].classList.remove('active');
+//     // activeButton = (activeButton === 0) ? buttons.length - 1 : activeButton - 1;
+//     // buttons[activeButton].classList.add('active');
+// } else if (e.key === 'ArrowDown') {
+//     // Move to the next button
+//     if(loadingpage && timeSinceLastKeyDown >= delay){
+//         // buttonClickSound.currentTime = 0
+//         // buttonClickSound.play()
+//         lastKeyDownTime = currentTime;
+//     }
+//     // buttons[activeButton].classList.remove('active');
+//     // activeButton = (activeButton === buttons.length - 1) ? 0 : activeButton + 1;
+//     // buttons[activeButton].classList.add('active');
+// }
+// // console.log(buttons[0].id)
+// if(e.key === "Enter" && buttons[activeButton].id === "startGame"){
+//     document.querySelector(".loading-page").style.setProperty("display", "none");
+//     // buttonClickSound.play()
+//     window.addEventListener("keydown", e => {
+//         // bgm.play()
+//         // bgm.volume = .2
+//         loadingpage = false
+//         inputDir = { // game starts
+//             x: 0,
+//             y: 1
+//         }
 
-        switch (e.key) {
-            //arrow keys
-            case "ArrowUp":
-                console.log("up")
-                inputDir.x = 0
-                inputDir.y = -1
-                break
+//         switch (e.key) {
+//             //arrow keys
+//             case "ArrowUp":
+//                 console.log("up")
+//                 inputDir.x = 0
+//                 inputDir.y = -1
+//                 break
 
-            case "ArrowDown":
-                console.log("down")
-                inputDir.x = 0
-                inputDir.y = 1
+//             case "ArrowDown":
+//                 console.log("down")
+//                 inputDir.x = 0
+//                 inputDir.y = 1
 
-                break
-            case "ArrowLeft":
-                console.log("left")
-                inputDir.x = -1
-                inputDir.y = 0
-                break
-            case "ArrowRight":
-                console.log("right")
-                inputDir.x = 1
-                inputDir.y = 0
-                break
+//                 break
+//             case "ArrowLeft":
+//                 console.log("left")
+//                 inputDir.x = -1
+//                 inputDir.y = 0
+//                 break
+//             case "ArrowRight":
+//                 console.log("right")
+//                 inputDir.x = 1
+//                 inputDir.y = 0
+//                 break
 
-            // wasd keys
-            case "w":
-                console.log("up")
-                inputDir.x = 0
-                inputDir.y = -1
-                break
+//             // wasd keys
+//             case "w":
+//                 console.log("up")
+//                 inputDir.x = 0
+//                 inputDir.y = -1
+//                 break
 
-            case "s":
-                console.log("down")
-                inputDir.x = 0
-                inputDir.y = 1
-                break
-            case "a":
-                console.log("left")
-                inputDir.x = -1
-                inputDir.y = 0
-                break
-            case "d":
-                console.log("right")
-                inputDir.x = 1
-                inputDir.y = 0
-                break
-            default:
-                break
-        }
-    })
-}
-})
+//             case "s":
+//                 console.log("down")
+//                 inputDir.x = 0
+//                 inputDir.y = 1
+//                 break
+//             case "a":
+//                 console.log("left")
+//                 inputDir.x = -1
+//                 inputDir.y = 0
+//                 break
+//             case "d":
+//                 console.log("right")
+//                 inputDir.x = 1
+//                 inputDir.y = 0
+//                 break
+//             default:
+//                 break
+//         }
+//     })
+// }
+// })
